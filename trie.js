@@ -72,13 +72,19 @@ Trie.prototype.find = function(word, index){
 };
 
 Trie.prototype.autoComplete = function(prefix){
+  var  subTrie = this.find(prefix);
+   if (subTrie) {
+    return subTrie.getWords([], prefix);
+  } else {
+    return [];
+  }
   // This function will return all completions 
   // for a given prefix.
   // It should use find and getWords.
 };
 
 try{
-  module.exports = Trie
+  module.exports = Trie;
 } catch(e){
 
 }
