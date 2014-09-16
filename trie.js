@@ -49,10 +49,7 @@ Trie.prototype.getWords = function(words, currentWord){
   for (var letter in this.characters) {
     this.characters[letter].getWords(words, currentWord + letter);
   }
-
   return words;
-  
-
   };
 
 
@@ -65,11 +62,59 @@ Trie.prototype.getWords = function(words, currentWord){
 
 
 Trie.prototype.find = function(word, index){
+
+var letter = word[index];
+  if (index === undefined){
+  index = 0;
+  }
+
+// this.learn(word, index);
+
+  if (index < word.length -1) {
+// test for presence of letter in trie
+    if (this.characters[letter] === undefined) {
+// word not in tree
+      return false;
+    } else {
+// move on through Trie, searching
+    index++;
+    this.find(word, index);
+  }
+
+} else if (index === word.length - 1) {
+// by the index & word.length you know you are
+// at the end of the word you are looking for
+
+if (this.characters[letter].isWord === true) {
+// this is already a learned word
+// return it
+return this.characters[letter];
+} else {
+// YES ADD ISWORD = TRUE
+// return it
+
+// if not already learned as a word, learn it?
+// indicate it is a full word rather than just characters that are present?
+// "learn" the world by adding isWord = true?
+}
+
+} else {
+// error
+return false;
+}
+
+// This function will return the node in the trie
+// which corresponds to the end of the passed in word.
+
+// Be sure to consider what happens if the word is not in this Trie.
+};
   // This function will return the node in the trie
   // which corresponds to the end of the passed in word.
 
   // Be sure to consider what happens if the word is not in this Trie.
-};
+
+
+
 
 Trie.prototype.autoComplete = function(prefix){
   var  subTrie = this.find(prefix);
