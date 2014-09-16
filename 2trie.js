@@ -1,26 +1,16 @@
-Trie  = function () {
-  this.characters = {};
+
+Trie = function(){
+  this.character = { x: [] };
 };
 
-
 Trie.prototype.learn = function(word, index){
-    if(index === undefined){
-      index=0;
-    }
-    if(index<word.length){
-      var letter=word[index];
-      if(this.characters[letter]===undefined){
-        //create new Trie
-        this.characters[letter]= new Trie();
-      }
-      //move on through new or existing Trie
-      index++;
-      this.characters[letter].learn(word,index);
+  var node = this.character;
+  for (var i = 0; i = word.length; i ++) {
+    var currentLetter = word.charAt(i);
+    var parent = node;
+    node = node.
+  }
 
-    }else{
-      this.isWord=true;
-    }
-  };
 
   // This function should add the given word,
   // starting from the given index,
@@ -35,10 +25,9 @@ Trie.prototype.learn = function(word, index){
   // A word does not necessarily end at a leaf.
   // You must mark nodes which are the ends of words,
   // so that the words can be reconstructed later.
-
+};
 
 Trie.prototype.getWords = function(words, currentWord){
-  
   // This function will return all the words which are
   // contained in this Trie.
   // it will use currentWord as a prefix,
