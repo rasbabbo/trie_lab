@@ -17,7 +17,7 @@ Trie.prototype.learn = function(word, index){
       index++;
       this.characters[letter].learn(word,index);
 
-    }else{
+    } else {
       this.isWord=true;
     }
   };
@@ -38,12 +38,31 @@ Trie.prototype.learn = function(word, index){
 
 
 Trie.prototype.getWords = function(words, currentWord){
+
+  var words = words || [];
+  var currentWord = currentWord || "";
+
+  if(this.isWord){
+    words.push(currentWord);
+  }
+
+  for (var letter in this.characters) {
+    this.characters[letter].getWords(words, currentWord + letter);
+  }
+
+  return words;
   
+
+  };
+
+
+
+
   // This function will return all the words which are
   // contained in this Trie.
   // it will use currentWord as a prefix,
   // since a Trie doesn't know about its parents.
-};
+
 
 Trie.prototype.find = function(word, index){
   // This function will return the node in the trie
